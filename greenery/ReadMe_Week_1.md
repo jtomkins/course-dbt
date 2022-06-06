@@ -5,12 +5,12 @@
 *`select count(user_id) from dbt_jen_w.stg_users`*
 
 ## On average, how many orders do we receive per hour?
-	15 (15.0416666666666667)
-	select avg(order_count)
+> 15 (15.0416666666666667)  <br>
+*`select avg(order_count)
 	from (SELECT count(order_id) order_count, EXTRACT(HOUR FROM created_at) 
 	from dbt_jen_w.stg_orders o 
 	group by EXTRACT(HOUR FROM created_at)
-	order by EXTRACT(HOUR FROM created_at) desc ) Z
+	order by EXTRACT(HOUR FROM created_at) desc ) Z`*
 
 ## On average, how long does an order take from being placed to being delivered?
 	3 days 21hours 24mins 11sec 803279ms
