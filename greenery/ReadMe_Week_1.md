@@ -6,17 +6,17 @@
 
 ## On average, how many orders do we receive per hour?
 > 15 (15.0416666666666667)  <br>
-*`select avg(order_count) <br>
-	from (SELECT count(order_id) order_count, EXTRACT(HOUR FROM created_at)  <br>
-	from dbt_jen_w.stg_orders o  <br>
-	group by EXTRACT(HOUR FROM created_at) <br>
-	order by EXTRACT(HOUR FROM created_at) desc ) Z`*
+*`select avg(order_count) `*
+	*`from (SELECT count(order_id) order_count, EXTRACT(HOUR FROM created_at)`*`*
+	*`from dbt_jen_w.stg_orders o  `*
+	*`group by EXTRACT(HOUR FROM created_at) `*
+	*`order by EXTRACT(HOUR FROM created_at) desc ) Z`*
 
 ## On average, how long does an order take from being placed to being delivered?
 > 3 days 21hours 24mins 11sec 803279ms   <br>
-*`select avg(dt_diff) <br>
-	from (SELECT order_id ,created_at, delivered_at, (delivered_at - created_at) as dt_diff <br>
-	from dbt_jen_w.stg_orders  <br>
+*`select avg(dt_diff)
+	from (SELECT order_id ,created_at, delivered_at, (delivered_at - created_at) as dt_diff
+	from dbt_jen_w.stg_orders  
 	where delivered_at is not null) Z`*
 
 
