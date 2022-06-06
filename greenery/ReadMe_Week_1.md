@@ -21,7 +21,7 @@
 
 
 ## How many users have only made one purchase? (Note: you should consider a purchase to be a single order. In other words, if a user places one order for 3 products, they are considered to have made 1 purchase.)
-> 25
+> 25  <br>
 	*`select count(user_id)
 	from (select user_id
 			from dbt_jen_w.stg_orders
@@ -29,7 +29,7 @@
 			having count(*) = 1)Z`*
 
 ## Two purchases? 
-> 28
+> 28  <br>
 	*`select count(user_id)
 	from (select user_id
 			from dbt_jen_w.stg_orders
@@ -37,7 +37,7 @@
 			having count(*) = 2)Z`*
 
 ## Three+ purchases?
-> 71
+> 71  <br>
 	*`select count(user_id)
 	from (select user_id
 			from dbt_jen_w.stg_orders
@@ -45,7 +45,7 @@
 			having count(*) >= 3)Z`*
 
 ## On average, how many unique sessions do we have per hour?
-148.0416666666666667
+148.0416666666666667  <br>
 
 -- (not sure how to derive, but checked that there are no duplicate session ids in the data) <br>
 	*`select avg(session_count)
