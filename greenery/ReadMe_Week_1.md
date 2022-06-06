@@ -1,7 +1,7 @@
 # Week 1 Questions and Answers
 
 ## How many users do we have?
-	130
+    > 130
 `select count(user_id) from dbt_jen_w.stg_users`
 
 ## On average, how many orders do we receive per hour?
