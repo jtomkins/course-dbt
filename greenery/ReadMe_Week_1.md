@@ -47,7 +47,7 @@
 ## On average, how many unique sessions do we have per hour?
 148.0416666666666667
 
--- (not sure how to derive, but checked that there are no duplicate session ids in the data)
+-- (not sure how to derive, but checked that there are no duplicate session ids in the data) <br>
 	*`select avg(session_count)
 	from (SELECT count(session_id) session_count, EXTRACT(HOUR FROM created_at) as hour
 	from dbt_jen_w.stg_events 
