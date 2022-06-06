@@ -5,7 +5,6 @@
 	```
 	select count(user_id) 
 	from dbt_jen_w.stg_users
-
 	```
 
 ## On average, how many orders do we receive per hour?
