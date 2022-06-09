@@ -20,13 +20,14 @@
 	where delivered_at is not null) Z`*
 
 
-## How many users have only made one purchase? (Note: you should consider a purchase to be a single order. In other words, if a user places one order for 3 products, they are considered to have made 1 purchase.)
-> 25  <br>
-	*`select count(user_id)
-	from (select user_id
-			from dbt_jen_w.stg_orders
-			group by user_id
-			having count(*) = 1)Z`*
+* How many users have only made one purchase? (Note: you should consider a purchase to be a single order. In other words, if a user places one order for 3 products, they are considered to have made 1 purchase.)
+25
+```
+	select count(user_guid) 
+	from 
+  		(select user_guid from dbt_jen_w.stg_greenery__orders
+  		group by user_guid having count(*) = 1)Z
+```
 
 ## Two purchases? 
 > 28  <br>
