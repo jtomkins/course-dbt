@@ -3,31 +3,31 @@
 ## How many users do we have?
 > 130 <br>
 ```	 
-	select count(user_id) 
-	from dbt_jen_w.dbt_jen_w.stg_greenery__users
+	select count(user_guid) 
+	from dbt_jen_w.stg_greenery__users
 ```	 
 
 ## On average, how many orders do we receive per hour?
 > 15 (15.0416666666666667)  <br>
 ```	 
 	select avg(order_count) 
-	from (  SELECT 	count(order_id) order_count, 
-			EXTRACT(HOUR FROM created_at)
-		from dbt_jen_w.stg_greenery__orders 
-		group by EXTRACT(HOUR FROM created_at)
-		order by EXTRACT(HOUR FROM created_at) desc ) Z
+	from (  SELECT 	count(order_guid) order_count, 
+			EXTRACT(HOUR FROM created_at_utc)
+		from dbt_jen_w.stg_greenery__orders  
+		group by EXTRACT(HOUR FROM created_at_utc)
+		order by EXTRACT(HOUR FROM created_at_utc) desc ) Z
 ```	 
 
 ## On average, how long does an order take from being placed to being delivered?
 > 3 days 21hours 24mins 11sec 803279ms   <br>
 ```	 
 select avg(dt_diff)
-	from (SELECT 	order_id,
-			created_at, 
-			delivered_at, 
-			(delivered_at - created_at) as dt_diff
+	from (SELECT order_guid,
+			created_at_utc, 
+			delivered_at_utc, 
+			(delivered_at_utc - created_at_utc) as dt_diff
 		from dbt_jen_w.stg_greenery__orders  
-		where delivered_at is not null) Z
+		where delivered_at_utc is not null) Z
 ```	 
 
 ## How many users have only made one purchase? Two purchases? Three+ purchases?
@@ -68,9 +68,9 @@ with orders_gt_3 as (
 -- (not sure how to derive, but checked that there are no duplicate session ids in the data) <br>
 ```	 
 	select avg(session_count)
-	from (SELECT count(session_id) session_count, 
-			EXTRACT(HOUR FROM created_at) as hour
+	from (SELECT count(session_guid) session_count, 
+			EXTRACT(HOUR FROM created_at_utc) as hour
 		from dbt_jen_w.stg_greenery__events 
-		group by EXTRACT(HOUR FROM created_at)
-		order by EXTRACT(HOUR FROM created_at) desc ) Z
+		group by EXTRACT(HOUR FROM created_at_utc)
+		order by EXTRACT(HOUR FROM created_at_utc) desc ) Z
 ```	 
