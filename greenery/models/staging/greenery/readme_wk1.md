@@ -20,13 +20,36 @@
 	where delivered_at is not null) Z`*
 
 
-* How many users have only made one purchase? (Note: you should consider a purchase to be a single order. In other words, if a user places one order for 3 products, they are considered to have made 1 purchase.)
-25
-```
-	select count(user_guid) 
-	from 
-  		(select user_guid from dbt_jen_w.stg_greenery__orders
-  		group by user_guid having count(*) = 1)Z
+* How many users have only made one purchase? Two purchases? Three+ purchases? *
+
+25 users have made one purchase, 28 users have made 2 purchases and 71 users have made 3 or more purchases
+
+```	 
+	with orders_gt_3 as (
+			select count(nbr_orders_per_guid) number_of_users, nbr_orders_per_guid as number_of_purchases
+			from 
+				(select 
+					user_guid,
+					count(distinct(order_guid)) as nbr_orders_per_guid --  number of orders per user guid
+				from dbt_jen_w.stg_greenery__orders
+				group by 1
+				)Z
+			where nbr_orders_per_guid >= 3
+			group by 2),
+	orders_lt_3 as (
+			select count(nbr_orders_per_guid) number_of_users, nbr_orders_per_guid as number_of_purchases
+			from 
+				(select 
+					user_guid,
+					count(distinct(order_guid)) as nbr_orders_per_guid --  number of orders per user guid
+					from dbt_jen_w.stg_greenery__orders
+					group by 1
+				)Z
+			where nbr_orders_per_guid < 3
+			group by 2) 
+		select number_of_users, number_of_purchases::varchar(255) as number_of_purchases from orders_lt_3
+		union
+		select sum(number_of_users) as number_of_users, '3 or more' as number_of_purchases from orders_gt_3
 ```
 
 ## Two purchases? 
