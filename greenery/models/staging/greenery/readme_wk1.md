@@ -25,31 +25,31 @@
 25 users have made one purchase, 28 users have made 2 purchases and 71 users have made 3 or more purchases
 
 ```	 
-	with orders_gt_3 as (
-			select count(nbr_orders_per_guid) number_of_users, nbr_orders_per_guid as number_of_purchases
-			from 
-				(select 
-					user_guid,
-					count(distinct(order_guid)) as nbr_orders_per_guid --  number of orders per user guid
+with orders_gt_3 as (
+	select count(nbr_orders_per_guid)			as number_of_users,
+		   nbr_orders_per_guid 					as number_of_purchases
+		from 
+			(select user_guid,
+					count(distinct(order_guid)) as nbr_orders_per_guid 
+			from dbt_jen_w.stg_greenery__orders
+			group by 1
+			)Z
+		where nbr_orders_per_guid >= 3
+		group by 2),
+	orders_lt_3 as (
+		select count(nbr_orders_per_guid) 		as number_of_users, 
+			   nbr_orders_per_guid 				as number_of_purchases
+		from 
+			(select user_guid,
+					count(distinct(order_guid)) as nbr_orders_per_guid
 				from dbt_jen_w.stg_greenery__orders
 				group by 1
 				)Z
-			where nbr_orders_per_guid >= 3
-			group by 2),
-	orders_lt_3 as (
-			select count(nbr_orders_per_guid) number_of_users, nbr_orders_per_guid as number_of_purchases
-			from 
-				(select 
-					user_guid,
-					count(distinct(order_guid)) as nbr_orders_per_guid --  number of orders per user guid
-					from dbt_jen_w.stg_greenery__orders
-					group by 1
-				)Z
-			where nbr_orders_per_guid < 3
-			group by 2) 
-		select number_of_users, number_of_purchases::varchar(255) as number_of_purchases from orders_lt_3
-		union
-		select sum(number_of_users) as number_of_users, '3 or more' as number_of_purchases from orders_gt_3
+		where nbr_orders_per_guid < 3
+		group by 2) 
+	select number_of_users, number_of_purchases::varchar(255) as number_of_purchases from orders_lt_3
+	union
+	select sum(number_of_users) as number_of_users, '3 or more' as number_of_purchases from orders_gt_3
 ```
 
 ## Two purchases? 
