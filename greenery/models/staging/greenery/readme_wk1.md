@@ -26,22 +26,22 @@
 
 ```	 
 with orders_gt_3 as (
-	select count(nbr_orders_per_guid)			as number_of_users,
+	select count(nbr_orders_per_guid)				as number_of_users,
 		   nbr_orders_per_guid					as number_of_purchases
 		from 
 			(select user_guid,
-					count(distinct(order_guid))	as nbr_orders_per_guid 
+				count(distinct(order_guid))		as nbr_orders_per_guid 
 			from dbt_jen_w.stg_greenery__orders
 			group by 1
 			)Z
 		where nbr_orders_per_guid >= 3
 		group by 2),
 	orders_lt_3 as (
-		select count(nbr_orders_per_guid)		as number_of_users, 
-			   nbr_orders_per_guid				as number_of_purchases
+		select	count(nbr_orders_per_guid)			as number_of_users, 
+			nbr_orders_per_guid				as number_of_purchases
 		from 
 			(select user_guid,
-					count(distinct(order_guid))	as nbr_orders_per_guid
+				count(distinct(order_guid))		as nbr_orders_per_guid
 				from dbt_jen_w.stg_greenery__orders
 				group by 1
 				)Z
