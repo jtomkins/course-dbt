@@ -20,7 +20,7 @@
 	where delivered_at is not null) Z`*
 
 
-* How many users have only made one purchase? Two purchases? Three+ purchases? *
+## How many users have only made one purchase? Two purchases? Three+ purchases?
 
 25 users have made one purchase, 28 users have made 2 purchases and 71 users have made 3 or more purchases
 
