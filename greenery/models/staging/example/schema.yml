@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: stg_superheroes
+  - name: stg_superheroes_example
     description: Demographics about each superhero such as name, hair color, height and weight. 
     columns:
       - name: name
