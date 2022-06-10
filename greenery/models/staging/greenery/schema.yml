@@ -1,23 +1,67 @@
 version: 2
 
 models:
-  - name: stg_greenery__events
-    description: event details such as session id, type and page. 
-   
-  - name: stg_greenery__orders
-    description: order details such as address, cost, tracking, shipping and delivery
+     
+
       
   - name: stg_greenery__users
     description: User details such as name, address, email and phone. 
-  
-  - name: stg_greenery__addresses
-    description: address details such as street, state, zip and country.
 
   - name: stg_greenery__products
     description: product detials such as name, price and inventory. 
 
-  - name: stg_greenery__order_items
-    description: order item details such as quantity. 
+  
 
   - name: stg_greenery__promos
-    description: promo details such as discount and status.       
+    description: promo details such as discount and status.   
+
+
+models:
+  - name: stg_greenery__addresses
+    description: address details such as street, state, zip and country
+    columns:
+      - name: address_guid
+        description: the primary key for this table
+        tests:
+          - unique
+          - not_null
+  - name: stg_greenery__events
+    description: event details such as session id, type and page
+    columns:
+      - name: event_guid
+        description: The primary key for this table
+        tests:
+          - unique
+          - not_null
+  - name: stg_greenery__orders
+    description: order details such as address, cost, tracking, shipping and delivery
+    columns:
+      - name: order_guid
+        description: the primary key for this table
+        tests:
+          - unique
+          - not_null
+  - name: stg_greenery__products
+    description: product detials such as name, price and inventory.
+    columns:
+      - name: product_guid
+        description: the primary key for this table
+        tests:
+          - unique
+          - not_null
+  - name: stg_greenery__promos
+    description: promo details such as discount and status
+    columns:
+      - name: promo_id
+        description: the primary key for this table
+        tests:
+          - unique
+          - not_null          
+  - name: stg_greenery__users
+    description: user details such as name, address, email and phone.
+    columns:
+      - name: user_guid
+        description: the primary key for this table
+        tests:
+          - unique
+          - not_null    
