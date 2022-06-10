@@ -41,6 +41,11 @@ models:
         tests:
           - unique
           - not_null
+  - name: stg_greenery_order_items
+    description: order item details such as quantity.
+    columns:
+      - name: order_items_surrogate_key
+        description: combines product id and order id to make unique key
   - name: stg_greenery__products
     description: product detials such as name, price and inventory.
     columns:
