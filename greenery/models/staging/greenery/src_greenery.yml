@@ -92,7 +92,7 @@ sources:
         columns:
           - name: order_id 
             description: OrderId of this order and is combined with product id to create a primary key index
-          - name: product_id and is primary key 
+          - name: product_id 
             description: ProductId of a single item in this order and is combined with order id to create a primary key index
           - name: quantity
             description: Number of units of the product in this order
@@ -102,8 +102,8 @@ sources:
         description: >
           Contains promos
         columns:
-          - name: promo_id is the primary key,
-            description: Each unique promocode on platform
+          - name: promo_id 
+            description: Each unique promocode on platform and is the primary key
           - name: discount
             description: Absolute dollar amount that is given off with the code
           - name: status
@@ -135,8 +135,8 @@ sources:
         description: >
           Contains address for each user
         columns:
-          - name: address_id is the primary key 
-            description: UUID for each unique address on platform
+          - name: address_id
+            description: UUID for each unique address on platform and is the primary key
           - name: address
             description: The first few lines of the address
           - name: zipcode
@@ -145,34 +145,3 @@ sources:
             description: state this delivery address is based in
           - name: country
             description: country this delivery address is based in
-
-      - name: superheroes 
-        description: >
-          Contains demographics about each superhero such as name, hair color, height and weight.
-        columns:
-          - name: id
-            description: Id of the superhero in the database and is the primary key
-          - name: name
-            description: Name of the superhero
-          - name: gender
-            description: Gender of the superhero
-          - name: eye_color
-            description: Eyecolor of the superhero
-          - name: race
-            description: Race of the superhero
-          - name: hair_color 
-            description: Hair color of the superhero
-          - name: height
-            description: height of the superhero
-          - name: publisher 
-            description: publisher / comic brand that created the superhero
-          - name: skin_color
-            description: Skin color of the superhero
-          - name: alignment
-            description: Alignment of the superhero
-          - name: weight
-            description: Weight of the superhero
-          - name: created_at 
-            description: Timestamp when this record was created
-          - name: updated_at
-            description: Timestamp of last update
