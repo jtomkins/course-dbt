@@ -63,14 +63,13 @@ with orders_gt_3 as (
 ```
 
 ## On average, how many unique sessions do we have per hour?
-148.0416666666666667  <br>
+16.3275862068965517  <br>
 
--- (not sure how to derive, but checked that there are no duplicate session ids in the data) <br>
 ```	 
-	select avg(session_count)
-	from (SELECT count(session_guid) session_count, 
-			EXTRACT(HOUR FROM created_at_utc) as hour
+select avg(session_count)
+	from (SELECT count(distinct(session_guid)) session_count, 
+		 date_trunc('hour',  created_at_utc) as hour
 		from dbt_jen_w.stg_greenery__events 
-		group by EXTRACT(HOUR FROM created_at_utc)
-		order by EXTRACT(HOUR FROM created_at_utc) desc ) Z
+		group by 2
+		order by 2 desc )z
 ```	 
