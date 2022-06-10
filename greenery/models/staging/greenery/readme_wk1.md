@@ -63,7 +63,7 @@ with orders_gt_3 as (
 ```
 
 ## On average, how many unique sessions do we have per hour?
-16.3275862068965517  <br>
+> 16.3275862068965517  <br>
 
 ```	 
 select avg(session_count)
