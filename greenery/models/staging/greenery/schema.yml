@@ -1,31 +1,6 @@
 version: 2
 
 models:
-  - name: stg_greenery__superheroes
-    description: Demographics about each superhero such as name, hair color, height and weight.  
-    columns:
-      - name: id
-      - name: name
-        tests:
-          - not_null
-      - name: gender
-      - name: eye_color
-      - name: race
-      - name: hair_color 
-      - name: height
-        tests:
-          - positive_values
-      - name: publisher 
-      - name: skin_color
-      - name: alignment
-      - name: weight
-        tests:
-          - positive_values
-      - name: created_at 
-      - name: updated_at
-
-        
-
   - name: stg_greenery__events
     description: event details such as session id, type and page. 
     columns:
@@ -67,7 +42,7 @@ models:
       - name: updated_at
       - name: address_id
 
-  - name: stg_greenery__address
+  - name: stg_greenery__addresses
     description: address details such as street, state, zip and country.
     columns:
       - name: address_id 
