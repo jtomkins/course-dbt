@@ -1,22 +1,6 @@
 version: 2
 
 models:
-     
-
-      
-  - name: stg_greenery__users
-    description: User details such as name, address, email and phone. 
-
-  - name: stg_greenery__products
-    description: product detials such as name, price and inventory. 
-
-  
-
-  - name: stg_greenery__promos
-    description: promo details such as discount and status.   
-
-
-models:
   - name: stg_greenery__addresses
     description: address details such as street, state, zip and country
     columns:
@@ -41,7 +25,7 @@ models:
         tests:
           - unique
           - not_null
-  - name: stg_greenery_order_items
+  - name: stg_greenery__order_items
     description: order item details such as quantity.
     columns:
       - name: order_items_surrogate_key
