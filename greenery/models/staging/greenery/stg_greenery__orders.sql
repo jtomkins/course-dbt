@@ -12,7 +12,7 @@ with orders_source as (
 , renamed_recast AS
 (SELECT 
     order_id as order_guid,
-    promo_id as promo_id,
+   lower(promo_id) as promo_id,
     user_id as user_guid,
     address_id as address_guid,
     created_at as created_at_utc,
@@ -21,7 +21,7 @@ with orders_source as (
     order_total,
     tracking_id,
     shipping_service,
-    estimated_delivery_at as delivery_at_utc,
+    estimated_delivery_at as estimated_delivery_at_utc,
     delivered_at as delivered_at_utc,
     status
 FROM orders_source
