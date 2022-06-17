@@ -21,7 +21,6 @@ SELECT
     ,int_session_events_basic_agg.package_shipped
     ,session_length.first_event as first_session_event
     ,session_length.last_event as last_session_event
-    --,( date_part 'day', session_length.last_event::timestamp)
 
 from {{  ref('int_session_events_basic_agg')  }}
 left join {{  ref('stg_greenery__users')  }}
