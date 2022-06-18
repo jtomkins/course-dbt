@@ -13,7 +13,10 @@ SELECT
     ,stg_greenery__addresses.state
     ,stg_greenery__addresses.country
     ,stg_greenery__addresses.zip_code
-    ,int_orders_promo_id_agg.order_guid
+    --,int_orders_promo_id_agg.order_guid
+   ,int_products_sold_per_order.order_guid
+ ,int_products_sold_per_order.product_name
+  ,int_products_sold_per_order.number_sold_per_order
     ,int_orders_promo_id_agg.instruction_set
     ,int_orders_promo_id_agg.digitized
     ,int_orders_promo_id_agg.mandatory
@@ -30,3 +33,6 @@ left join {{  ref('stg_greenery__users')  }}
     on  int_orders_promo_id_agg.user_guid = stg_greenery__users.user_guid
 LEFT JOIN {{ ref('stg_greenery__addresses') }}
   ON stg_greenery__users.address_guid =stg_greenery__addresses.address_guid
+LEFT JOIN {{ ref('int_products_sold_per_order')}}
+  ON int_products_sold_per_order.order_guid = int_orders_promo_id_agg.order_guid
+  
