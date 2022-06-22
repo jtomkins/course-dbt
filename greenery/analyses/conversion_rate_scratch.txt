@@ -3,6 +3,27 @@ conversion rate = # of unique sessions with a purchase event / total number of u
 
 conversion rate by product = the # of unique sessions that viewed that product
 
+-- https://github.com/dbt-labs/dbt-utils
+
+/*
+{%
+    set event_types = dbt_utils.get_query_results_as_dict (
+            "select distinct(event_type) as event_type, event_type as column_name from"
+            ~ ref('stg_greenery__events')
+    )
+%}*/
+
+
+SELECT
+    session_guid
+    ,created_at_utc
+    ,user_guid
+     {% for event_type in event_types['event_type'] %}
+        ,sum(case when event_type = '{{event_type}}' then 1 else 0 end) as users_in_{{ dbt_utils.slugify(event_type) }}
+    {% endfor %}
+from {{ ref ('stg_greenery__events') }}
+group by 1,2,3
+
 product
 int user product events
 {{
