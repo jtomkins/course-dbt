@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int_session_events_basic_agg
+    description: Event type by session id and user
+  - name: fct_session
+    description: summary information re session's event type and time spent by the user
