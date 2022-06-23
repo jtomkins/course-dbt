@@ -14,8 +14,8 @@ select
   sum(add_to_cart) as total_add_to_cart,
 	sum(page_view) as total_page_views,
 	sum(checkout ) as total_checkouts
-from dbt_jen_w.int_session_events_agg_macro 
-group by user_guid
+from {{ ref('int_session_events_agg_macro') }}
+group by 1
 )
 
 select * from events_stats
