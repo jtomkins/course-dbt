@@ -20,7 +20,7 @@ from {{ ref('int_session_events_agg_macro') }} m
 and checkout > 0
   group by 1,2
 )
-select sbp.*, oes.* 
+select sbp.*, oes.*, (unique_user_sessions_with_checkouts::float/ unique_session_viewed_each_product::float) as product_conversion_rate
 from session_by_product sbp
     left join order_events_stats oes
     on sbp.sbp_product_guid = oes.oes_product_guid
