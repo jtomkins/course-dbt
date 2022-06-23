@@ -1,5 +1,5 @@
 
-conversion rate = # of unique sessions with a purchase event / total number of uniqye sessions
+conversion rate = # of unique sessions with a purchase event / total number of unique sessions
 
 conversion rate by product = the # of unique sessions that viewed that product
 
