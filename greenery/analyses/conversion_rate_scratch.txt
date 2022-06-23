@@ -1,3 +1,49 @@
+-- Conversion rate by product is defined as the # of unique sessions with a purchase event 
+-- of that product / total number of unique sessions that viewed that product
+-- what is considered a purchase event, the action of add to cart or checking out?
+-- as a consumer i know i leave items in carts without checking out 
+-- if the product converstion rate is to measure the products ordered wouldnt 
+-- use the order items table since the event table doesnt include the product id for those orders whose event status is checkout?
+
+-- how many sessions by product had a checkout 
+select 
+  o.product_guid,
+  o.product_name,
+  count(distinct  session_guid ) filter (where checkout > 0) as unique_user_sessions_with_checkouts
+  --count(distinct session_guid ) filter (where page_view > 0) as number_of_unique_session_page_views
+from dbt_jen_w.int_session_events_agg_macro m, 
+      dbt_jen_w.int_products_sold_per_order o
+where  m.order_guid = o.order_guid
+and checkout > 0
+group by 1,2
+order by 3 desc
+
+--- how many unique session viewed each product
+--e.g.00b3765f-3af3-4cbf-9fba-904daf17faff viewed 5 different products
+select product_guid,
+      count(distinct session_guid) as unique_session_viewed_each_product
+from dbt_jen_w.int_session_events_agg_macro
+where product_guid is not null
+and page_view > 0
+group by 1
+order by 1
+
+ --check 60?
+select count(*)
+from dbt_jen_w.int_session_events_agg_macro
+where product_guid = '05df0866-1a66-41d8-9ed7-e2bbcddd6a3d'
+and page_view > 0
+
+
+--  conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions
+-0.6245674740484429
+select  sum(user_sessions_with_checkouts)::float / sum(number_of_unique_session_page_views)::float as conversion_rate
+ from dbt_jen_w.int_user_session_event_stats
+
+
+
+
+
 
 conversion rate = # of unique sessions with a purchase event / total number of unique sessions
 
