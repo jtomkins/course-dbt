@@ -1,7 +1,7 @@
 # Week 3 Questions and Answers
 
 ## What is our overall conversion rate?
-> note: conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions. <br>
+*note: conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions.*
 > 0.6245674740484429 <br>
 ```sql 
 	select  sum(user_sessions_with_checkouts)::float / sum(number_of_unique_session_page_views)::float as conversion_rate
@@ -9,7 +9,7 @@
 ```	 
 
 ## What is our conversion rate by product?
-> note: Conversion rate by product is defined as the # of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product <br>
+*note: Conversion rate by product is defined as the # of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product*S
 | Product ID | Product Name | Conversion Rate (%) |
 | ----------- | ----------- | ----------- |
 | fb0e8be7-5ac4-4a76-a1fa-2cc4bf0b2d80 | String of pearls | 60 |
