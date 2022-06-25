@@ -12,7 +12,7 @@
 *note: Conversion rate by product is defined as the # of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product*
 | Product ID | Product Name | Conversion Rate(%) |
 | ----------- | ----------- | ----------- |
-| fb0e8be7-5ac4-4a76-a1fa-2cc4bf0b2d80 | String of pearls 60.937 |
+| fb0e8be7-5ac4-4a76-a1fa-2cc4bf0b2d80 | String of pearls |60.937 |
 | 74aeb414-e3dd-4e8a-beef-0fa45225214d | Arrow Head |55.555 |
 | c17e63f7-0d28-4a95-8248-b01ea354840e | Cactus |54.545 |
 | b66a7143-c18a-43bb-b5dc-06bb5d1d3160 | ZZ Plant |53.968 |
@@ -25,11 +25,14 @@
 
 ```	sql 
 SELECT
+  itps.product_guid,
   itps.product_name,
-    (ioses.unique_user_sessions_with_checkouts::float 
-        / ioses.unique_session_viewed_each_product::float) as checkout_product_conversion_rate
-from {{  ref('int_product_session_event_stats')  }} as ioses
-left join {{  ref('int_total_products_sold')  }} as itps
+  (ioses.unique_user_sessions_with_checkouts::float 
+        / ioses.unique_session_viewed_each_product::float)*100 as checkout_product_conversion_rate
+from dbt_jen_w.int_product_session_event_stats as ioses
+left join dbt_jen_w.int_total_products_sold as itps
     on ioses.ordered_product_guid = itps.product_guid
+order by 3 desc
+limit 10
 ```	 
 
