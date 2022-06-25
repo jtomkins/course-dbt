@@ -17,11 +17,11 @@
 | c17e63f7-0d28-4a95-8248-b01ea354840e | Cactus |54.545 |
 | b66a7143-c18a-43bb-b5dc-06bb5d1d3160 | ZZ Plant |53.968 |
 | 689fb64e-a4a2-45c5-b9f2-480c2155624d | Bamboo |53.7313|
-| 689fb64e-a4a2-45c5-b9f2-480c2155624d | Rubber Plant |51.851
-| 689fb64e-a4a2-45c5-b9f2-480c2155624d | Monstera |51.020|
-| 689fb64e-a4a2-45c5-b9f2-480c2155624d | Calathea Makoyana |50.943|
-| 689fb64e-a4a2-45c5-b9f2-480c2155624d | Fiddle Leaf Fig |50|
-| 689fb64e-a4a2-45c5-b9f2-480c2155624d | Majesty Palm |49.253|
+| 579f4cd0-1f45-49d2-af55-9ab2b72c3b35 | Rubber Plant |51.851
+| be49171b-9f72-4fc9-bf7a-9a52e259836b | Monstera |51.020|
+| b86ae24b-6f59-47e8-8adc-b17d88cbd367 | Calathea Makoyana |50.943|
+| e706ab70-b396-4d30-a6b2-a1ccf3625b52 | Fiddle Leaf Fig |50|
+| 5ceddd13-cf00-481f-9285-8340ab95d06d | Majesty Palm |49.253|
 
 ```	sql 
 SELECT
