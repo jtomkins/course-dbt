@@ -1,4 +1,5 @@
-# Week 3 Questions and Answers
+# Week 3 
+## Part 1
 
 ## What is our overall conversion rate?
 *note: conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions.*
@@ -35,4 +36,72 @@ left join dbt_jen_w.int_total_products_sold as itps
 order by 3 desc
 limit 10
 ```	 
+## Part 2
+# Create a macro to simplify part of a model(s)
 
+
+## Part 3
+# Add a post hook to your project to apply grants to the role “reporting”.
+
+
+## Part 4
+> Add package dbt_utils: /greenery/packages.yml
+```	 
+packages:
+  - package: dbt-labs/dbt_utils
+    version: 0.8.6
+```	 
+Model: 
+/product/intermediate/int_session_events_agg_macro
+
+```	sql
+{{ config(materialized = 'table')  }}
+
+{%
+    set event_types = dbt_utils.get_query_results_as_dict (
+            "select distinct quote_literal(event_type) as event_type, event_type as column_name from"
+            ~ ref('stg_greenery__events')
+    )
+%}
+
+With events_agg as (
+SELECT
+    session_guid
+    ,created_at_utc
+    ,user_guid
+    ,product_guid
+    ,order_guid
+     {% for event_type in event_types['event_type'] %}
+        ,sum(case when event_type = {{event_type}} then 1 else 0 end) as {{ event_types['column_name'][loop.index0] }}
+    {% endfor %}
+from {{ ref('stg_greenery__events') }}
+group by 1,2,3,4,5
+)
+
+select * from events_agg
+```
+Model: staging/stg_greenery__order_items
+
+```sql
+{{
+  config(
+    materialized='view'
+  )
+}}
+
+with order_items_source as (
+  select * from  {{ source('src_greenery', 'order_items') }}
+)
+
+
+, renamed_recast AS
+(SELECT 
+  order_id as order_guid,
+  product_id as product_guid,
+  quantity,
+  {{ dbt_utils.surrogate_key(['order_id', 'product_id']) }} as order_items_surrogate_key
+FROM order_items_source
+)
+
+select * from renamed_recast
+```
