@@ -10,20 +10,20 @@ with session_length as (
 )
 
 SELECT
-    int_session_events_basic_agg.session_guid
-    ,int_session_events_basic_agg.user_guid
-    ,stg_greenery__users.first_name
-    ,stg_greenery__users.last_name
-    ,stg_greenery__users.email
-    ,int_session_events_basic_agg.page_view
-    ,int_session_events_basic_agg.add_to_cart
-    ,int_session_events_basic_agg.checkout
-    ,int_session_events_basic_agg.package_shipped
-    ,session_length.first_event as first_session_event
-    ,session_length.last_event as last_session_event
-    ,date_part('hour', session_length.last_event::timestamp - session_length.first_event::timestamp) as hours_diff
-from {{  ref('int_session_events_basic_agg')  }}
-left join {{  ref('stg_greenery__users')  }}
-    on int_session_events_basic_agg.user_guid = stg_greenery__users.user_guid
-left join session_length
-    on int_session_events_basic_agg.session_guid = session_length.session_guid
+    iseam.session_guid
+    ,iseam.user_guid
+    ,stu.first_name
+    ,stu.last_name
+    ,stu.email
+    ,iseam.page_view
+    ,iseam.add_to_cart
+    ,iseam.checkout
+    ,iseam.package_shipped
+    ,sl.first_event as first_session_event
+    ,sl.last_event as last_session_event
+    ,date_part('hour', sl.last_event::timestamp - sl.first_event::timestamp) as hours_diff
+from {{  ref('int_session_events_agg_macro')  }} as iseam
+left join {{  ref('stg_greenery__users')   }} as stu
+    on iseam.user_guid = stu.user_guid
+left join session_length sl
+    on iseam.session_guid = sl.session_guid
