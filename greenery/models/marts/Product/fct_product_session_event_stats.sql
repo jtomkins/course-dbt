@@ -3,6 +3,7 @@
 -- Conversion rate by product is defined as the # of unique sessions with a purchase event 
 -- of that product / total number of unique sessions that viewed that product
 SELECT
+itps.product_guid,
   itps.product_name,
   itps.total_number_sold,
   ioses.unique_user_sessions_with_checkouts,
