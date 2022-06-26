@@ -82,7 +82,7 @@ packages:
   - package: dbt-labs/dbt_utils
     version: 0.8.6
 ```	 
-*Model: /product/intermediate/int_session_events_agg_macro*
+*Model: /product/intermediate/int_session_events_agg_macro*<br>
 *Package: dbt_utils.get_query_results_as_dict*
 
 ```	sql
@@ -111,7 +111,7 @@ group by 1,2,3,4,5
 
 select * from events_agg
 ```
-*Model: staging/stg_greenery__order_items*
+*Model: staging/stg_greenery__order_items*<br>
 *Package: dbt_utils.surrogate_key*
 
 ```sql
