@@ -37,7 +37,7 @@ order by 3 desc
 limit 10
 ```	 
 ## Part 2
-# Create a macro to simplify part of a model(s)
+## Create a macro to simplify part of a model(s)
 Model: marketing/intermediate/int_orders_promo_id_agg
 
 ```	 
@@ -71,7 +71,7 @@ group by 1,2,3,4
 
 
 ## Part 3
-# Add a post hook to your project to apply grants to the role “reporting”.
+## Add a post hook to your project to apply grants to the role “reporting”.
 
 
 ## Part 4
