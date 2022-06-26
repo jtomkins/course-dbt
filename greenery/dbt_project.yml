@@ -43,5 +43,5 @@ models:
   post-hook:
     - "GRANT SELECT ON {{ this }} TO reporting"
 
-on-run-end:
+  on-run-end:
    - "GRANT USAGE ON SCHEMA {{ 'dbt_jen_w' }} TO reporting"
