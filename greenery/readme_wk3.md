@@ -38,6 +38,36 @@ limit 10
 ```	 
 ## Part 2
 # Create a macro to simplify part of a model(s)
+Model: marketing/intermediate/int_orders_promo_id_agg
+
+```	 
+{% macro aggregate_promos(promo_id) %}
+    SUM(CASE WHEN promo_id = '{{promo_id}}' THEN 1 ELSE 0 END)
+{% endmacro %}
+```	 
+
+```sql
+{{ config(materialized = 'table')  }}
+
+{% 
+    set promo_ids = dbt_utils.get_column_values(
+        table=ref('stg_greenery__orders'),
+        column='promo_id'
+    ) 
+%}
+
+
+SELECT
+     order_guid
+    ,user_guid
+    ,address_guid
+    ,created_at_utc
+{% for promo in promo_ids %}
+  , {{aggregate_promos( promo )}} AS {{promo}}
+{% endfor %}
+from {{ ref ('stg_greenery__orders') }}
+group by 1,2,3,4
+```
 
 
 ## Part 3
