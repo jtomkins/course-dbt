@@ -45,3 +45,4 @@ models:
 
   on-run-end:
    - "GRANT USAGE ON SCHEMA {{ 'dbt_jen_w' }} TO reporting"
+
