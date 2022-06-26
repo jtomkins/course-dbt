@@ -1,15 +1,15 @@
 # Week 3 
 ## Part 1
 
-**What is our overall conversion rate?**
-*note: conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions.*
+**What is our overall conversion rate?**<br>
+*note: conversion rate is defined as the # of unique sessions with a purchase event / total number of unique sessions.*<br>
 > 0.6245674740484429 <br>
 ```sql 
 	select  sum(user_sessions_with_checkouts)::float / sum(number_of_unique_session_page_views)::float as conversion_rate
 	from dbt_jen_w.int_user_session_event_stats
 ```	 
 
-**What is our conversion rate by product?**
+**What is our conversion rate by product?**<br>
 *note: Conversion rate by product is defined as the # of unique sessions with a purchase event of that product / total number of unique sessions that viewed that product*
 | Product ID | Product Name | Conversion Rate(%) |
 | ----------- | ----------- | ----------- |
@@ -37,8 +37,8 @@ order by 3 desc
 limit 10
 ```	 
 ## Part 2
-**Create a macro to simplify part of a model(s)**
-Model: marketing/intermediate/int_orders_promo_id_agg
+**Create a macro to simplify part of a model(s)** <br>
+*Model: marketing/intermediate/int_orders_promo_id_agg*
 
 ```	 
 {% macro aggregate_promos(promo_id) %}
@@ -75,8 +75,8 @@ group by 1,2,3,4
 
 
 ## Part 4
-**Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project**
-> Add package dbt_utils: /greenery/packages.yml
+**Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project**<br>
+*Added package dbt_utils: /greenery/packages.yml*
 ```	 
 packages:
   - package: dbt-labs/dbt_utils
