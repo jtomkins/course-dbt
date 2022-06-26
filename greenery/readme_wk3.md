@@ -72,6 +72,13 @@ group by 1,2,3,4
 
 ## Part 3
 **Add a post hook to your project to apply grants to the role “reporting”.**
+```
+  post-hook:
+    - "GRANT SELECT ON {{ this }} TO reporting"
+
+  on-run-end:
+   - "GRANT USAGE ON SCHEMA {{ 'dbt_jen_w' }} TO reporting"
+ ```  
 
 
 ## Part 4
