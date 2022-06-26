@@ -82,8 +82,8 @@ packages:
   - package: dbt-labs/dbt_utils
     version: 0.8.6
 ```	 
-Model: /product/intermediate/int_session_events_agg_macro
-Package: dbt_utils.get_query_results_as_dict
+*Model: /product/intermediate/int_session_events_agg_macro*
+*Package: dbt_utils.get_query_results_as_dict*
 
 ```	sql
 {{ config(materialized = 'table')  }}
@@ -111,8 +111,8 @@ group by 1,2,3,4,5
 
 select * from events_agg
 ```
-Model: staging/stg_greenery__order_items
-Package: dbt_utils.surrogate_key
+*Model: staging/stg_greenery__order_items*
+*Package: dbt_utils.surrogate_key*
 
 ```sql
 {{
