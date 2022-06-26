@@ -2,9 +2,7 @@
 
 
 SELECT
-    int_orders_promo_id_agg.*
-    ,stg_greenery__users.user_guid as users_user_guid
-    ,stg_greenery__users.first_name
+    stg_greenery__users.first_name
     ,stg_greenery__users.last_name
     ,stg_greenery__users.email
     ,stg_greenery__users.phone_number
@@ -14,9 +12,9 @@ SELECT
     ,stg_greenery__addresses.state
     ,stg_greenery__addresses.country
     ,stg_greenery__addresses.zip_code
-   ,int_products_sold_per_order.order_guid  as ipspo_order_guid
- ,int_products_sold_per_order.product_name  as ispso_product_name
+ ,int_products_sold_per_order.product_name  as product_name
   ,int_products_sold_per_order.number_sold_per_order
+    ,int_orders_promo_id_agg.*
 
 from {{  ref('int_orders_promo_id_agg')  }}
 left join {{  ref('int_orders_delivery_basic')  }}
