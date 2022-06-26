@@ -2,30 +2,22 @@
 
 
 SELECT
-    stg_greenery__users.user_guid
+    int_orders_promo_id_agg.*
+    ,stg_greenery__users.user_guid as users_user_guid
     ,stg_greenery__users.first_name
     ,stg_greenery__users.last_name
     ,stg_greenery__users.email
     ,stg_greenery__users.phone_number
-    ,stg_greenery__users.created_at_utc
-    ,stg_greenery__users.updated_at_utc
+    ,stg_greenery__users.created_at_utc users_created_at_utc
+    ,stg_greenery__users.updated_at_utc users_updated_at_utc
     ,stg_greenery__addresses.street_address
     ,stg_greenery__addresses.state
     ,stg_greenery__addresses.country
     ,stg_greenery__addresses.zip_code
-    --,int_orders_promo_id_agg.order_guid
-   ,int_products_sold_per_order.order_guid
- ,int_products_sold_per_order.product_name
+   ,int_products_sold_per_order.order_guid  as ipspo_order_guid
+ ,int_products_sold_per_order.product_name  as ispso_product_name
   ,int_products_sold_per_order.number_sold_per_order
-    ,int_orders_promo_id_agg.instruction_set
-    ,int_orders_promo_id_agg.digitized
-    ,int_orders_promo_id_agg.mandatory
-	,int_orders_promo_id_agg.optional
-    ,int_orders_promo_id_agg.leverage
-    ,int_orders_promo_id_agg.task_force
-    ,int_orders_delivery_basic.number_of_days_to_deliver
-    ,int_orders_delivery_basic.diff_in_estimated_delivery
-   
+
 from {{  ref('int_orders_promo_id_agg')  }}
 left join {{  ref('int_orders_delivery_basic')  }}
     on int_orders_promo_id_agg.order_guid = int_orders_delivery_basic.order_guid

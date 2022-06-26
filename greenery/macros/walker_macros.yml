@@ -1,0 +1,7 @@
+version: 2
+
+macros:
+  - name: aggregate_promos
+    description: "Aggregate promo ids"
+    docs: 
+      show: true
