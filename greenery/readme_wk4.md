@@ -23,3 +23,24 @@ Part 2. Modeling challenge
 How are our users moving through the product funnel?
 
 Which steps in the funnel have largest drop off points?
+
+
+WITH agg AS ( 
+select 
+    count(distinct(session_guid))
+    ,count(distinct case when page_view > 0 then session_guid end) as page_views 
+    ,count(distinct case when add_to_cart > 0 then session_guid end) as add_to_cart
+    ,count(distinct case when checkout > 0 then session_guid end) as checkout
+    --,session_guid
+    --,sum(page_view)
+    --, page_view as has_page_view
+from dbt_jen_w.fct_sessions
+--group by 5 --,6
+--order by 5
+)
+SELECT
+  add_to_cart::numeric/page_views::numeric
+  ,checkout::numeric/add_to_cart::numeric
+  --,has_page_view
+from agg  
+

@@ -4,6 +4,7 @@
 With events_stats as (
 select
   user_guid,
+  session_guid,
   count(distinct session_guid) total_user_sessions,
   count(distinct product_guid ) total_unique_products_sampled,
   count(distinct order_guid ) filter (where checkout > 0)  as total_orders_with_checkouts,
@@ -15,7 +16,7 @@ select
 	sum(page_view) as total_page_views,
 	sum(checkout ) as total_checkouts
 from {{ ref('int_session_events_agg_macro') }}
-group by 1
+group by 1,2
 )
 
 select * from events_stats
