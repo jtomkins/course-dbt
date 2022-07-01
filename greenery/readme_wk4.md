@@ -18,9 +18,9 @@
 ```
 
 ## Part 2: Modeling challenge
-
-**Product funnel: Sessions with any event of type page_view --> add_to_cart --> checkout** <br>
 **How are our users moving through the product funnel?**<br>
+**Product funnel: Sessions with any event of type page_view --> add_to_cart --> checkout** <br>
+
 >New model: /Marketing/fct_user_session_event_stats
 ```sql 
 select 
@@ -30,7 +30,7 @@ select
 from dbt_jen_w.fct_user_session_event_stats
 ```
 **Which steps in the funnel have largest drop off points?** <br>
->Therefore, our biggest drop off point is between add to cart and checkout.
+>Biggest drop off point is between add to cart and checkout.<br>
 >The conversion rate for step 1 is 0.807. The conversion rate for step 2 is 0.773.
 ```sql 
 With sess_agg as (
