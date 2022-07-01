@@ -22,7 +22,7 @@ Part 2. Modeling challenge
 
 Product funnel: Sessions with any event of type page_view --> add_to_cart --> checkout
 
-New model: /core/fct_greenery__sessions_users
+New model: /Marketing/fct_user_session_event_stats
 
 How are our users moving through the product funnel?
 select 
