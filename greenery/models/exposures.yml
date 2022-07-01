@@ -1,0 +1,12 @@
+version: 2
+
+exposures:  
+  - name: Product Funnel Dashboard
+    description: >
+      Core model for the product funnel dashboard.
+    type: dashboard
+    owner:
+      name: Jen Walker
+      email: jtomkins@ucsc.edu
+    depends_on:
+      - ref('fct_user_session_event_stats')
