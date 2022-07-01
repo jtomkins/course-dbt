@@ -1,5 +1,6 @@
 # Week 3 
 ## Part 1: dbt Snapshots
+>Snapshots: /snapshots/orders_snapshot.sql
 ```sql 
 {% snapshot orders_snapshot %}
 
