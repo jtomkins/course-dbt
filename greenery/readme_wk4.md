@@ -1,4 +1,4 @@
-# Week 3 
+# Week 4 
 ## Part 1: dbt Snapshots
 >Snapshots: /snapshots/orders_snapshot.sql
 ```sql 
