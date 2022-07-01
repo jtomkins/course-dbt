@@ -22,7 +22,7 @@ SELECT
     ,sl.first_event as first_session_event
     ,sl.last_event as last_session_event
     ,date_part('hour', sl.last_event::timestamp - sl.first_event::timestamp) as hours_diff
-from {{  ref('int_session_events_agg_macro')  }} as iseam
+from {{  ref('int_session_events_agg')  }} as iseam
 left join {{  ref('stg_greenery__users')   }} as stu
     on iseam.user_guid = stu.user_guid
 left join session_length sl

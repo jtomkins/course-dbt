@@ -14,7 +14,7 @@ order_events_stats as (
 select 
   p.product_guid as ordered_product_guid,
   count(distinct  session_guid ) filter (where checkout > 0) as unique_user_sessions_with_checkouts
-  from {{ ref('int_session_events_agg_macro') }} m
+  from {{ ref('int_session_events_agg') }} m
     inner join {{ ref('int_products_sold_per_order') }} p
       on m.order_guid = p.order_guid
 and checkout > 0
