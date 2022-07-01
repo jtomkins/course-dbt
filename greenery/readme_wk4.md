@@ -68,5 +68,5 @@ exposures:
 ## Part 3:reflection
 **3A. dbt next steps for you** <br>
 **if your organization is using dbt, what are 1-2 things you might do differently / recommend to your organization based on learning from this course?** <br>
->Our organization is at the beginning stage of implmenting dbt, I would recommend to follow the best practices used for oganizing files, naming conventions and use of the dbt generated documentation.  I would also recommend the best practice of keeping the models simple, (dont over engineer), and also highlight the distinction of the fct/dim tables and how the BI tool should be used, in that the BI tool is used for finalization and layout of the query results, not the fct/dim models (which is where I got confused).
+>Our organization is at the beginning stage of implementing dbt, I would recommend to follow the best practices used for organizing files, naming conventions and use of the dbt generated documentation. I would also recommend the best practice of keeping the models simple, (dont over engineer), and also highlight the distinction of the fct/dim tables and how the BI tool should be used, in that the BI tool is used for finalization and layout of the query results, not the fct/dim models (which is where I got confused).
 
